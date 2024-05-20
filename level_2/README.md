@@ -29,6 +29,6 @@ Then at the root level of the project :
 - Add contraints in database 
 - Add hooks running automatically on database to check data integrity
 - Handle secrets
-- Avoid inserting duplicate row in table member
+- Avoid inserting duplicate row in table member (idempotency of emitter script is broken with considering there is multiple entries for each member)
 - Change model (current model not relational because of sentence read in `Assume that each row represents a separate instance of member activity.` if it is the case we need 2 tables : 1 for members and 1 for recommendations)
 - Provide documentation on how to read the alternate model (a mermaid entity relational diagram to start with)
