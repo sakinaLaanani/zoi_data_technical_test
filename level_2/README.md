@@ -10,6 +10,10 @@ Then at the root level of the project :
    - `docker-compose up -d`
 3. Run emitter script 
    - `python member_data_emitter.py`
+4. Check database 
+   - `docker exec -it <POSTGRES_CONTAINER_ID> bash`
+5. Connect to database with psql and zoi user created in init db
+   - `psql -U zoi_user -d zoi_db`
 
 ### Action plan
 - Build a multi container app with one container for the server and one container for the database

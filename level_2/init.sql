@@ -1,7 +1,8 @@
 \c zoi_db;     
 
 CREATE TABLE member (
-    id CHAR(16) PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    member_id CHAR(16),
     created_at DATE,
     sex SMALLINT,
     age SMALLINT,
@@ -15,3 +16,5 @@ CREATE TABLE member (
 CREATE USER zoi_user WITH PASSWORD 'zoi_user_pswd';
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO zoi_user;
+
+GRANT USAGE ON all sequences IN SCHEMA public TO zoi_user;

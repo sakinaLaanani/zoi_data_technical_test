@@ -15,7 +15,8 @@ class Member(db.Model):
     __tablename__ = 'member'
     __table_args__ = {'extend_existing': True}
 
-    id = db.Column(db.Text, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    member_id = db.Column(db.Text)
     created_at = db.Column(db.DateTime)
     sex = db.Column(db.Integer)
     age = db.Column(db.Integer)
@@ -33,12 +34,12 @@ def main_page():
 def create_member():
     new_member = request.get_json() 
     json_member = parse_string_to_json(new_member['member'])
-    member_received = Member(id=json_member['id'], created_at=json_member['created_at'], sex=json_member['sex'], age=json_member['age'], default_language_en=json_member['default_language_en'], waiting_list_time=json_member['waiting_list_time'], black_and_white_design=json_member['black_and_white_design'], follow_reco=json_member['follow_reco'], follow_reco_above_50p=json_member['follow_reco_above_50p'])
+    member_received = Member(member_id=json_member['id'], created_at=json_member['created_at'], sex=json_member['sex'], age=json_member['age'], default_language_en=json_member['default_language_en'], waiting_list_time=json_member['waiting_list_time'], black_and_white_design=json_member['black_and_white_design'], follow_reco=json_member['follow_reco'], follow_reco_above_50p=json_member['follow_reco_above_50p'])
     
     # Since data has around 25% of chance to have a duplicate ID we check the database before inserting 
-    if db.session.query(Member).filter(Member.id == json_member['id']).count() == 0:
-        db.session.add(member_received)
-        db.session.commit()
+    #if db.session.query(Member).filter(Member.id == json_member['id']).count() == 0:
+    db.session.add(member_received)
+    db.session.commit()
     return ''
 
 if __name__ == "__main__":
