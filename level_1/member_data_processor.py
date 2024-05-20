@@ -1,9 +1,6 @@
 import os
 import json
 import re
-from utils import parse_string_to_json
-#import sys
-#sys.path.append('..')
 from utils import parse_string_to_json 
 
 class Processor:
