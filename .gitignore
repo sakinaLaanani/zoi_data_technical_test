@@ -1,0 +1,8 @@
+raw/
+.git
+.idea/
+lib/__pycache__/
+__pycache__/
+processed/
+raw_sample/
+*/.coverage
