@@ -12,7 +12,7 @@ Then at the root level of the project :
    - `python member_data_emitter.py`
 5. Copy file containing queries to docker container
    - `docker cp level_sql/queries.sql <POSTGRES_CONTAINER_ID>:/tmp`
-6. Check database 
+6. Go to database 
    - `docker exec -it <POSTGRES_CONTAINER_ID> bash`
 7. Connect to database with psql and zoi user created in init db
    - `psql -U zoi_user -d zoi_db`

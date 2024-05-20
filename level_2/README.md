@@ -8,12 +8,16 @@ Then at the root level of the project :
    - `docker-compose build`
 2. Start docker
    - `docker-compose up -d`
-3. Run emitter script 
+3. Navigate to 
+   - `http://127.0.0.1:5000`
+4. Run emitter script 
    - `python member_data_emitter.py`
-4. Check database 
+5. Check data in database 
    - `docker exec -it <POSTGRES_CONTAINER_ID> bash`
-5. Connect to database with psql and zoi user created in init db
+6. Connect to database with psql and zoi user created in init db
    - `psql -U zoi_user -d zoi_db`
+7. Run this query to see the data
+   - `select * from member;` 
 
 ### Action plan
 - Build a multi container app with one container for the server and one container for the database

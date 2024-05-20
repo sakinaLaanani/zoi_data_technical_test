@@ -2,8 +2,9 @@ import os
 import json
 import re
 from utils import parse_string_to_json
-#from ..level_1.utils import parse_string_to_json 
-# uncomment previous line to run unit test 
+#import sys
+#sys.path.append('..')
+from utils import parse_string_to_json 
 
 class Processor:
     def __init__(self, input_folder, output_folder):

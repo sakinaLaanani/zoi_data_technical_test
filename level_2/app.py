@@ -1,6 +1,3 @@
-import re
-import json
-from sqlalchemy import create_engine, insert, text
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from utils import parse_string_to_json
@@ -36,8 +33,6 @@ def create_member():
     json_member = parse_string_to_json(new_member['member'])
     member_received = Member(member_id=json_member['id'], created_at=json_member['created_at'], sex=json_member['sex'], age=json_member['age'], default_language_en=json_member['default_language_en'], waiting_list_time=json_member['waiting_list_time'], black_and_white_design=json_member['black_and_white_design'], follow_reco=json_member['follow_reco'], follow_reco_above_50p=json_member['follow_reco_above_50p'])
     
-    # Since data has around 25% of chance to have a duplicate ID we check the database before inserting 
-    #if db.session.query(Member).filter(Member.id == json_member['id']).count() == 0:
     db.session.add(member_received)
     db.session.commit()
     return ''

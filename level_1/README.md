@@ -10,9 +10,11 @@
    - `cd level_1`
 4. Run click command line
    - `python cli.py process_log_files -i raw -o processed`
-5. Run unit tests 
+5. Move to test folder 
+   - `cd test`
+6. Run unit tests 
    - `pytest test_member_data_processor.py`
-6. Run coverage : 
+7. Run coverage : 
    - `coverage run -m pytest test_member_data_processor.py`
    - `coverage report -m`
 
@@ -33,9 +35,9 @@ TOTAL                               | 58      | 17   | 71%   |--
 - Install all packages while developping and pip freeze to get the requirements
 
 ### Improvments ideas
-- Add a precommit hook to format the code automatically : blake, flake8, pep 
+- Add a precommit hook to format the code automatically : blake, flake8, isort 
 - Refacto the class with a utils file (some methods should not be class methods)
-- Automate coverage
+- Automate coverage with CI (gitlab runners)
 - E2E test
 - Control the input files 
 - Control ouput format (all keys in json) if the object has no vocation to mutate
