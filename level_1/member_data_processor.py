@@ -1,6 +1,9 @@
 import os
 import json
 import re
+from utils import parse_string_to_json
+#from ..level_1.utils import parse_string_to_json 
+# uncomment previous line to run unit test 
 
 class Processor:
     def __init__(self, input_folder, output_folder):
@@ -19,37 +22,37 @@ class Processor:
             os.mkdir(self.output_path)
 
     def save_file(self, filename, json_content):
-        filepath = os.path.join(self.output_path, filename)[:-4] + '.json'
-        file = self.open_file(filepath, 'w+')
+        filepath = os.path.join(self.output_path, filename)[:-4] + ".json" # TO DO : place file extensions in constants file
+        file = self.open_file(filepath, "w+") # TO DO : place file right modes in constants file
         try:
             json.dump(json_content, file)
             file.close()
         except Exception as error:
             print(error)
 
-    def __format_reco(self, json_object): # TO DO: use variables for better maintanability
-        json_object['reco'] = {
-                "follow_reco": json_object["follow_reco"],
-                "follow_reco_above_50p": json_object["follow_reco_above_50p"],
+    def __format_reco(self, json_object):
+        follow_reco = "follow_reco"
+        follow_reco_above_50p = "follow_reco_above_50p"
+        json_object["reco"] = {
+                follow_reco: json_object[follow_reco],
+                follow_reco_above_50p: json_object[follow_reco_above_50p],
         }
-        del json_object["follow_reco"]
-        del json_object["follow_reco_above_50p"]
+        del json_object[follow_reco]
+        del json_object[follow_reco_above_50p]
         return json_object
     
     def parse_log_file(self, filename):
-        file = self.open_file(os.path.join(self.input_path, filename), 'r')
+        file = self.open_file(os.path.join(self.input_path, filename), "r")  # TO DO : place file right modes in constants file
         file_content = file.read()
-        file_content = file_content.replace('|', ',').replace('=', ':')
-        json_formatted_content = re.sub(r'(\w+):', r'"\1":', file_content)
+        json_object = parse_string_to_json(file_content)
         file.close()
-        json_object = json.loads(json_formatted_content)
         json_object = self.__format_reco(json_object)
         return json_object
 
     def process_files(self):
         self.create_output_dir()
         for filename in os.listdir(self.input_path):
-            if filename.endswith(".log"):
+            if filename.endswith(".log"): # TO DO : place file extensions in constants file
                 json_content = self.parse_log_file(filename)
                 self.save_file(filename, json_content)
 

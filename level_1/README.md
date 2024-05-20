@@ -42,5 +42,5 @@ TOTAL                               | 58      | 17   | 71%   |--
 - Clean processed data at each run ? 
 - Add a cache to manage already processed data ?
 - Test values out of bound in files (for example age of 999 years)
-- Ajouter des logs plus explicites
-- Gestion des exceptions
+- Add explicit logs
+- Manage exceptions

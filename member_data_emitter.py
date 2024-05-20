@@ -5,7 +5,7 @@ import random
 from lib.synthetic_data import generate_synthetic_data_with_duplicates
 
 
-def send_member_data(endpoint="http://127.0.0.1:5000"):
+def send_member_data(endpoint="http://127.0.0.1:5000/member"):
 
     # Generate a set of 100 ids to have multiple data by ids
     existing_ids = []

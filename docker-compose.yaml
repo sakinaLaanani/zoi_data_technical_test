@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./level_2
+    command: python app.py run -h 0.0.0.0
+    volumes:
+      - ./level_2/:/usr/src/app/
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./level_2/.env.dev
+    environment:
+      - DATABASE_URL=postgres://zoi_user:zoi_user_pswd@db:5432/zoi_db"
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=zoi_password
+      - POSTGRES_DB=zoi_db
+    volumes:
+      - ./level_2/init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  postgres_data:

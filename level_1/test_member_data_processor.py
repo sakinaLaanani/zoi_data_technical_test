@@ -1,7 +1,7 @@
 import unittest
 import os
 import json
-from level_1.member_data_processor import Processor
+from ..level_1.member_data_processor import Processor
 
 
 class TestMemberDataProcessor(unittest.TestCase):
